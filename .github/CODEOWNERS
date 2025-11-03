@@ -1,0 +1,6 @@
+# Asignación de responsables por carpeta
+
+/src/ @Desarrollo
+/notebooks/ @Limpieza_datos
+/tests/ @Pruebas
+/datasets/ @Limpieza_datos
