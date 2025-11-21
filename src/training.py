@@ -1,9 +1,18 @@
 import pandas as pd
+import numpy as np
+import random
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix, classification_report
 from joblib import dump
+
+# =============================
+# 0. Fijar semilla global
+# =============================
+SEED = 42
+random.seed(SEED)
+np.random.seed(SEED)
 
 # ================================
 # 1. CARGA DEL DATASET
@@ -48,7 +57,7 @@ y = df["Survived"]
 # 4. DIVISIÓN EN TRAIN Y TEST
 # ================================
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.25, random_state=42
+    X, y, test_size=0.25, random_state=SEED
 )
 
 # ================================
@@ -66,7 +75,7 @@ X_test_scaled = scaler.transform(X_test)
 rf = RandomForestClassifier(
     n_estimators=200,  # Número de árboles
     max_depth=None,  # Sin límite de profundidad
-    random_state=42,  # Reproducibilidad
+    random_state=SEED,  # Reproducibilidad
 )
 
 rf.fit(X_train_scaled, y_train)  # Entrenamiento
