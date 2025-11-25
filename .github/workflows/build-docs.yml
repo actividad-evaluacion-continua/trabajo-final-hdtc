@@ -1,0 +1,39 @@
+name: Build and Deploy Jupyter Book
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install jupyter-book myst-parser myst-nb sphinx sphinx-book-theme
+
+      - name: Copy notebooks/markdowns
+        run: |
+          mkdir -p docu-jb/content
+          cp -r notebooks/*.ipynb docu-jb/content/
+          cp -r markdowns/*.md docu-jb/content/
+
+      - name: Build Jupyter Book
+        run: jupyter-book build docu-jb/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docu-jb/_build/html
