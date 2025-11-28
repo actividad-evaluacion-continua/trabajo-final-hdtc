@@ -2,3 +2,5 @@ format: jb-book
 root: index
 chapters:
 - file: limpieza-datos.ipynb
+- file: EDA de Carla.ipynb
+- file: modelo-marta.ipynb
