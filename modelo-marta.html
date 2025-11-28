@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'modelo-marta';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="🧩 EDA del Titanic – Notebook listo para usar" href="EDA%20de%20Carla.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -173,8 +172,10 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="limpieza-datos.html">🧼 Limpieza y Preparación del Dataset del Titanic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EDA%20de%20Carla.html">🧩 EDA del Titanic – Notebook listo para usar</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MODELO RANDOM FOREST</a></li>
 </ul>
 
     </div>
@@ -342,6 +343,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="modelo-random-forest">
 <h1>MODELO RANDOM FOREST<a class="headerlink" href="#modelo-random-forest" title="Link to this heading">#</a></h1>
+<p>Este código importa las librerías esenciales para un proceso de Machine Learning. pandas permite cargar y manipular datos; train_test_split divide el dataset en entrenamiento y prueba; StandardScaler normaliza las variables numéricas; y RandomForestClassifier entrena un modelo basado en múltiples árboles de decisión. Finalmente, confusion_matrix y classification_report se utilizan para evaluar el rendimiento del modelo con métricas de clasificación.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -355,6 +357,10 @@ document.write(`
 </div>
 <section id="cargar-datos-ejemplo">
 <h2>1. Cargar datos (ejemplo)<a class="headerlink" href="#cargar-datos-ejemplo" title="Link to this heading">#</a></h2>
+<p>Este fragmento de código hace lo siguiente:</p>
+<p>Importa la librería pandas, que se utiliza para trabajar con datos en estructuras tipo DataFrame.</p>
+<p>Usa pd.read_csv() para cargar un archivo CSV ubicado en ../datasets/Titanic-Dataset.csv y almacenarlo en la variable df.</p>
+<p>df ahora contiene todos los datos del dataset Titanic en formato tabular, listos para exploración, limpieza o análisis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -368,6 +374,7 @@ document.write(`
 </section>
 <section id="features-y-variable-objetivo">
 <h2>2. Features y variable objetivo<a class="headerlink" href="#features-y-variable-objetivo" title="Link to this heading">#</a></h2>
+<p>Se seleccionan las columnas Age y Fare como variables predictoras X, y la columna Survived como variable objetivo y.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionamos las columnas &quot;Age&quot; y &quot;Fare&quot; como variables predictoras (features)</span>
@@ -381,6 +388,7 @@ document.write(`
 </section>
 <section id="dividir-en-train-test">
 <h2>3. Dividir en train / test<a class="headerlink" href="#dividir-en-train-test" title="Link to this heading">#</a></h2>
+<p>Se divide el dataset en conjuntos de entrenamiento y prueba, usando el 25% de los datos para prueba y asegurando reproducibilidad con random_state=42.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dividimos los datos en conjunto de entrenamiento y prueba, el 25% de los datos se usan para prueba</span>
@@ -394,6 +402,7 @@ document.write(`
 </section>
 <section id="escalado-random-forest-no-lo-requiere-pero-ayuda-si-hay-mucha-variacion">
 <h2>4. Escalado (Random Forest no lo requiere, pero ayuda si hay mucha variación)<a class="headerlink" href="#escalado-random-forest-no-lo-requiere-pero-ayuda-si-hay-mucha-variacion" title="Link to this heading">#</a></h2>
+<p>Se crea un StandardScaler para estandarizar las variables, ajustándolo con los datos de entrenamiento y aplicando la transformación tanto al conjunto de entrenamiento como al de prueba.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos un objeto StandardScaler para estandarizar las variables</span>
@@ -408,6 +417,13 @@ document.write(`
 </section>
 <section id="id1">
 <h2>5. Modelo Random Forest<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Este bloque de código realiza el entrenamiento y la predicción con un modelo de Random Forest para clasificación:</p>
+<ol class="arabic simple">
+<li><p>Se crea un objeto RandomForestClassifier configurado con 200 árboles (n_estimators=200), sin límite de profundidad (max_depth=None) y una semilla fija (random_state=42) para asegurar reproducibilidad.</p></li>
+<li><p>El modelo se entrena usando los datos de entrenamiento previamente escalados (X_train_scaled) y la variable objetivo correspondiente (y_train).</p></li>
+<li><p>Una vez entrenado, el modelo se utiliza para predecir los valores de la variable objetivo sobre el conjunto de prueba escalado (X_test_scaled), generando las predicciones y_pred.</p></li>
+</ol>
+<p>Este flujo permite evaluar cómo se comporta el modelo con datos que no ha visto durante el entrenamiento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos un modelo de Random Forest para clasificación</span>
@@ -428,6 +444,12 @@ document.write(`
 </section>
 <section id="metricas">
 <h2>6. Métricas<a class="headerlink" href="#metricas" title="Link to this heading">#</a></h2>
+<p>Este bloque de código se encarga de evaluar el desempeño del modelo:</p>
+<ol class="arabic simple">
+<li><p>confusion_matrix(y_test, y_pred) genera la matriz de confusión, que muestra cómo se distribuyen las predicciones correctas e incorrectas entre las clases reales.</p></li>
+<li><p>classification_report(y_test, y_pred) imprime métricas detalladas como precisión (precision), exhaustividad (recall), F1-score y soporte (número de muestras por clase), ofreciendo una visión completa de la calidad del modelo en el conjunto de prueba.</p></li>
+</ol>
+<p>En conjunto, estas métricas permiten identificar tanto la exactitud general como el comportamiento del modelo en cada clase individual.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imprimimos la matriz de confusión</span>
@@ -437,23 +459,6 @@ document.write(`
 <span class="c1"># Imprimimos el classification report</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix:
-[[101  33]
- [ 42  47]]
-
-Classification Report:
-              precision    recall  f1-score   support
-
-           0       0.71      0.75      0.73       134
-           1       0.59      0.53      0.56        89
-
-    accuracy                           0.66       223
-   macro avg       0.65      0.64      0.64       223
-weighted avg       0.66      0.66      0.66       223
 </pre></div>
 </div>
 </div>
@@ -491,6 +496,15 @@ weighted avg       0.66      0.66      0.66       223
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="EDA%20de%20Carla.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">🧩 EDA del Titanic – Notebook listo para usar</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
