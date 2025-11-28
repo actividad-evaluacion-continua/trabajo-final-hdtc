@@ -1,4 +1,8 @@
-# _config.yml
-title: "Mi Libro"
-author: "Paula Martinez Mora"
-root: index
+# Configuración mínima de tu Jupyter Book
+title: "Trabajo Final HDTC - Titanic"
+author: "Equipo"
+logo: ""  # opcional, puedes poner ruta a un logo
+language: es
+execute:
+  execute_notebooks: off
+  timeout: 60
