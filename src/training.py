@@ -6,11 +6,17 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix, classification_report
 from joblib import dump
+from dotenv import load_dotenv
+import os
+
+# Cargar variables del archivo .env
+load_dotenv()
+SEED = os.getenv("SEED")
 
 # =============================
 # 0. Fijar semilla global
 # =============================
-SEED = 42
+
 random.seed(SEED)
 np.random.seed(SEED)
 
