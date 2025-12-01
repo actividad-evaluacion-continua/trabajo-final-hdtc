@@ -1,8 +1,23 @@
 cff-version: 1.2.0
-title: "Servicio de predicción - Tema 4"
+title: "Servicio de Predicción - Tema 4"
+message: "Si usas este proyecto, por favor cita la siguiente referencia:"
 authors:
-  - family-names: "Apellido"
-    given-names: "Nombre"
-date-released: "2025-12-01"
+  - family-names: "Las Mellizas"
+    given-names: "Mellis"
+    affiliation: "CUNEF"
+
+abstract: >
+  Este proyecto implementa un servicio de predicción basado en modelos de aprendizaje automático,
+  desarrollado como parte del Tema 4. Incluye procesamiento de datos, entrenamiento del modelo
+  y despliegue de un servicio con API.
 version: "1.0.0"
-url: "https://github.com/ORG/REPO"
+doi: "10.5281/zenodo.0000000"
+date-released: "2025-12-01"
+license: "MIT"
+keywords:
+  - machine learning
+  - predicción
+  - servicio web
+  - API
+  - modelo de regresión/clasificación
+url: "https://github.com/actividad-evaluacion-continua/trabajo-final-hdtc.git"
