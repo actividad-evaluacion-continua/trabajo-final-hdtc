@@ -1,8 +1,8 @@
 name: Solicitud de funcionalidad
 description: Sugiere una mejora o nueva característica
 title: "[FEATURE] Breve descripción de la propuesta"
-labels: enhancement
-assignees: ''
+labels: ["enhancement"]
+assignees: []
 
 body:
   - type: markdown
