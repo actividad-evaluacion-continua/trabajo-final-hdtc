@@ -1,6 +1,6 @@
 # Asignación de responsables por carpeta
 
-/src/ @Desarrollo
-/notebooks/ @Limpieza_datos
-/tests/ @Pruebas
-/datasets/ @Limpieza_datos
+/src/ @actividad-evaluacion-continua/Desarrollo
+/notebooks/ @actividad-evaluacion-continua/Limpieza_datos
+/tests/ @actividad-evaluacion-continua/Pruebas
+/datasets/ @actividad-evaluacion-continua/Limpieza_datos
