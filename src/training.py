@@ -11,13 +11,12 @@ import os
 
 # Cargar variables del archivo .env
 load_dotenv()
-API_KEY = os.getenv("API_KEY")
-
+SEED = os.getenv("SEED")
 
 # =============================
 # 0. Fijar semilla global
 # =============================
-SEED = 42
+
 random.seed(SEED)
 np.random.seed(SEED)
 
