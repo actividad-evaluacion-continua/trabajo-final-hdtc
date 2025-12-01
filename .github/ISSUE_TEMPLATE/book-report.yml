@@ -1,8 +1,8 @@
 name: Reporte de bug
 description: Describe un error que encontraste en el proyecto
 title: "[BUG] Breve descripción del error"
-labels: bug
-assignees: ''
+labels: ["bug"]
+assignees: []
 
 body:
   - type: markdown
@@ -38,4 +38,4 @@ body:
     id: capturas
     attributes:
       label: Capturas de pantalla
-      description: Si puedes, añade imágenes del error
+      description: Si puedes, añade imágenes del error
